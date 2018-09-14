@@ -9,6 +9,8 @@ public class buttonmasher : MonoBehaviour
     public TextMesh scoreText; //display text for score
     public TextMesh timerText; //display text for timer
     public float gameLength; // seconds game will last 
+    public AudioSource gameoverSound; //sound that will play when game is over
+    public TextMesh messageText; //display text message
 
 
     private int score = 0; //the numerical data value
@@ -35,8 +37,16 @@ public class buttonmasher : MonoBehaviour
 
         //Check if time has ran out
         if (timeRemaining <= 0)
-
         {
+
+            if (gameRunning == true)
+            {
+                gameoverSound.Play();
+
+                //show the player the score
+                messageText.text = "time up! Final Score = " + score.ToString();
+            }
+
             gameRunning = false;
             //stop time running negative
             timeRemaining = 0;
@@ -53,11 +63,14 @@ public class buttonmasher : MonoBehaviour
 
         if (gameRunning == true)
         {
-            clickSound.Play(); //Trigger our clicking sound 
+            
+
+          clickSound.Play(); //Trigger our clicking sound 
                                //increase score by 1
             score = score + 1;
             //update visual score 
             scoreText.text = score.ToString();
+
         } //End of if
 
     } // End of OnMouseDown
