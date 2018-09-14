@@ -27,7 +27,7 @@ public class buttonmasher : MonoBehaviour {
         //numberical time remaining
         timeRemaining = timeRemaining - Time.deltaTime;
 
-        timerText.text = timeRemaining.ToString();
+        timerText.text = (Mathf.CeilToInt(timeRemaining)).ToString();
         //End of update function()
 
         
